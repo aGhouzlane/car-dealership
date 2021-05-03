@@ -7,6 +7,7 @@ namespace CarDealership
   {
     static void Main(string[] args)
     {
+
       Car volkswagen = new Car();
       volkswagen.MakeModel = "1974 Volkswagen Thing";
       volkswagen.Price = 1100;
@@ -28,11 +29,32 @@ namespace CarDealership
       amc.Miles = 198000;
 
       List<Car> Cars = new List<Car>() { volkswagen, yugo, ford, amc };
+      List<Car> CarsMatchingSearch = new List<Car>(0);
 
       foreach (Car automobile in Cars)
       {
         Console.WriteLine(automobile.MakeModel);
       }
+
+      Console.WriteLine("Enter maximum price: ");
+      string stringMaxPrice = Console.ReadLine();
+      int maxPrice = int.Parse(stringMaxPrice);
+
+      // This foreach loop is new.
+      foreach (Car automobile in Cars)
+      {
+        if (automobile.WorthBuying(maxPrice))
+        {
+          CarsMatchingSearch.Add(automobile);
+        }
+      }
+
+      //This loop has been modified.
+      foreach (Car automobile in CarsMatchingSearch)
+      {
+        Console.WriteLine(automobile.MakeModel);
+      }
+
     }
   }
 }
